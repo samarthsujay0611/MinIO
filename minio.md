@@ -14,7 +14,7 @@ To set up an object storage system in a cluster using MinIO.
 ##  List of Tools and Technologies
   
 - **MinIO** - Latest Version (RELEASE.2023-08-16T20-17-30Z)
-- **Docker** - Version 24.0.5
+- **Docker** - Version 24.0.6
 - **Sidekick**
   
 ##  Definitions of Tools
@@ -24,9 +24,39 @@ To set up an object storage system in a cluster using MinIO.
 - **Sidekick**: Sidekick is a high-performance sidecar load-balancer that eliminates centralized load balancer bottlenecks and simplifies DNS failover management by attaching a tiny load balancer to client application processes.
   
 ##  Commands for Setup or Configuration
+
+### 1. Install Docker on Linux:
+  #### Update Package Lists:
+
+  `sudo apt update`
+
+  #### Install Required Dependencies:
+  `sudo apt install apt-transport-https ca-certificates curl software-properties-common`
+
+  #### Add Docker GPG Key:
+  `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`
+
+#### Set up the Stable Repository:
+`echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
+
+#### Install Docker Engine:
+`sudo apt install docker-ce docker-ce-cli containerd.io`
+
+#### Verify Docker Installation:
+`sudo docker run hello-world`
+
+### 2. Install Docker Compose:
+#### Download Docker Compose:
+`sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+
+#### Make Docker Compose Executable:
+`sudo chmod +x /usr/local/bin/docker-compose`
+
+#### Verify Docker Compose Installation:
+`docker-compose --version`
+
   
-  
-###  1. Edit the `docker-compose.yml` File
+###  3. Edit the `docker-compose.yml` File
   
   
    Use the `vim` command to open and edit the `docker-compose.yml` file, which is commonly used for defining multi-container Docker applications.
@@ -48,7 +78,7 @@ Once you run this command, Vim will open the `docker-compose.yml` file, allowing
   
 ![Alt text](1.png )
   
-###  2. Add the Following Script to docker-compose.yml:
+###  4. Add the Following Script to docker-compose.yml:
   
   
 ```
@@ -89,7 +119,7 @@ services:
 ```
 ![Alt text](2.png )
   
-###  3. Start Docker Containers in Detached Mode
+###  5. Start Docker Containers in Detached Mode
   
   
 > **`docker-compose up -d`**
@@ -111,7 +141,7 @@ Here's a basic example of how you might use this command:
   
 ![Alt text](3.png )
   
-###  4. Edit the /etc/hosts File
+###  6. Edit the /etc/hosts File
   
   
 > **vim /etc/hosts**
@@ -129,7 +159,7 @@ When you run this command, Vim will open the /etc/hosts file, allowing you to vi
   
 ![Alt text](4.png )
   
-###  5. Install the MinIO Client
+###  7. Install the MinIO Client
   
   
 The MinIO Client allows you to work with your MinIO server from the command line.
@@ -150,7 +180,7 @@ Alternatively, execute mc by navigating to the parent folder and running ./mc --
   
 ![Alt text](5.png )
   
-###  6. Configure a MinIO Alias
+###  8. Configure a MinIO Alias
   
   
 > `mc alias set myminio http://127.0.0.1:8080 admin redhat1234`
@@ -191,7 +221,7 @@ Please make sure that you have the MinIO Client (`mc`) properly configured with 
   
 ![Alt text](7.png )
   
-###  8. Execute a Command Inside a Docker Container
+###  9. Execute a Command Inside a Docker Container
   
   
 > **`docker exec -it root_lb_1 "/sidekick" -a :8989 --health-path=/minio/health/ready http://minio{1...4}:9000`**
@@ -215,7 +245,7 @@ In summary, this Docker command runs the "/sidekick" command inside the "root_lb
   
 ![Alt text](8.png )
   
-###  9. View Docker Container Logs in Real-Time
+###  10. View Docker Container Logs in Real-Time
   
   
 > **docker logs -f samarth_minio2_1**
@@ -234,7 +264,7 @@ So, when you run docker logs -f samarth_minio2_1, you'll see the logs from the s
 
 ![Alt text](9.png )
   
-###  10. Open a Web Page
+###  11. Open a Web Page
   
   
 Open the following link in your browser: http://172.19.0.5:39151
@@ -243,14 +273,14 @@ Open the following link in your browser: http://172.19.0.5:39151
 
 ![Alt text](10.png )
   
-###  11. Open metrics 
+###  12. Open metrics 
   
   
 All Nodes are shown in the below screenshot.
   
 ![Alt text](11.png )
   
-###  12. Create a New Empty File
+###  13. Create a New Empty File
   
   
 Use the touch command to create a new empty file named "samarth.txt."
@@ -259,7 +289,7 @@ touch samarth.txt
   
 ![Alt text](12.png )
   
-###  13. Create a MinIO Bucket
+###  14. Create a MinIO Bucket
   
 Use the `mc mb` command to create a new MinIO bucket. 
   
@@ -283,7 +313,7 @@ When you run this command, it will create a new bucket named "sam1" in the MinIO
   
 ![Alt text](13.png )
   
-###  14.The object to copy from bucket
+###  15.The object to copy from bucket
   
   
 > **`mc cp /home/samarth/screenshots/sr.png -/myminio/sam1`**
@@ -300,7 +330,7 @@ Here's a breakdown of the command:
   
 ![Alt text](last-2.png )
   
-###  15.All Images are shown in the below screenshot 
+###  16.All Images are shown in the below screenshot 
   
   
 > **mc ls myminio/sam1**
