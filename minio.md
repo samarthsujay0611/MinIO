@@ -26,8 +26,7 @@ To set up an object storage system in a cluster using MinIO.
 ##  Commands for Setup or Configuration
 
 ### 1. Install Docker on Linux:
-
-  #### Update Package Lists:
+ #### Update Package Lists:
 
  > `sudo apt update`
 
