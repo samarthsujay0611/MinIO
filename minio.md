@@ -28,32 +28,62 @@ To set up an object storage system in a cluster using MinIO.
 ### 1. Install Docker on Linux:
   #### Update Package Lists:
 
-  `sudo apt update`
+ > `sudo apt update`
+    `sudo:` This stands for "Superuser Do" and it's used to execute commands with elevated privileges. It allows you to make changes to your system that regular users wouldn't have permission to do.
+
+    `apt:` This is the package manager for Debian-based systems. It's used for handling packages—installing, updating, and removing them.
+
+    `update:` This is a specific command for apt. When you run sudo apt update, it doesn't actually update the packages on your system; instead, it updates the local database of available packages. This database is necessary for the package manager to know what packages are available, where to download them, and what versions exist.
+  
 
   #### Install Required Dependencies:
-  `sudo apt install apt-transport-https ca-certificates curl software-properties-common`
+  > `sudo apt install apt-transport-https ca-certificates curl software-properties-common`
+
+    `sudo:` This is a command that allows a permitted user to execute a command as the superuser or another user, as specified by the security policy.
+
+    `apt:` This is the package management tool on Debian-based systems. It's used for installing, updating, upgrading, and removing software packages.
+
+    `install:` This is the subcommand for apt that specifies the action to be taken, in this case, installing a package.
+
+    `apt-transport-https:` This package allows APT to handle HTTPS URLs, which is crucial for secure communication when downloading packages from repositories.
+
+    `ca-certificates:` This package contains the trusted Certificate Authorities (CAs) that are used to verify the authenticity of SSL certificates.
+
+    `curl:` This is a command-line tool and library for transferring data with URLs. It's often used in scripts to download files from the internet.
+
+    `software-properties-common:` This package provides an abstraction of the used apt repositories. It also includes common utilities for adding and managing software repositories.
 
   #### Add Docker GPG Key:
-  `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`
+ > `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`
+
+      `curl -fsSL https://download.docker.com/linux/ubuntu/gpg:` This part fetches the Docker GPG (GNU Privacy Guard) key from the specified URL using the curl command. The options -fsSL tell curl to be quiet (-s), follow redirects (-L), and show errors (-f).
+
+    `|:` This vertical bar is a pipe. It takes the output of the command on its left (in this case, the GPG key downloaded by curl) and passes it as input to the command on its right.
+
+    `sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg:` This part takes the GPG key received from curl and does a couple of things. sudo is used to run the following command with administrative privileges.
+
+        `gpg --dearmor:` This command is transforming the key from the GPG format into a format that is more convenient for storage and use. Think of it like converting a file from one format to another.
+
+        `-o /usr/share/keyrings/docker-archive-keyring.gpg:` This specifies the output file where the transformed key will be stored. In this case, it's saved as /usr/share/keyrings/docker-archive-keyring.gpg.
 
 #### Set up the Stable Repository:
-`echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
+> `echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
 
 #### Install Docker Engine:
-`sudo apt install docker-ce docker-ce-cli containerd.io`
+> `sudo apt install docker-ce docker-ce-cli containerd.io`
 
 #### Verify Docker Installation:
-`sudo docker run hello-world`
+> `sudo docker run hello-world`
 
 ### 2. Install Docker Compose:
 #### Download Docker Compose:
-`sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+> `sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
 
 #### Make Docker Compose Executable:
-`sudo chmod +x /usr/local/bin/docker-compose`
+> `sudo chmod +x /usr/local/bin/docker-compose`
 
 #### Verify Docker Compose Installation:
-`docker-compose --version`
+> `docker-compose --version`
 
   
 ###  3. Edit the `docker-compose.yml` File
@@ -170,9 +200,12 @@ The following commands add a temporary extension to your system PATH for running
   
 Alternatively, execute mc by navigating to the parent folder and running ./mc --help
   
-> `curl https://dl.min.io/client/mc/release/linux-amd64/mc \--create-dirs \-o <img src="https://latex.codecogs.com/gif.latex?HOME/minio-binaries/mc`&gt;%20`chmod%20+x"/>HOME/minio-binaries/mc`
+> `curl https://dl.min.io/client/mc/release/linux-amd64/mc \
+  --create-dirs \
+  -o $HOME/minio-binaries/mc`
+> `chmod +x $HOME/minio-binaries/mc`
   
-> `export PATH=<img src="https://latex.codecogs.com/gif.latex?PATH:"/>HOME/minio-binaries/`
+> `export PATH=$PATH:$HOME/minio-binaries/`
   
 > `mc --help`
   
