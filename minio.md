@@ -7,7 +7,7 @@ To set up an object storage system in a cluster using MinIO.
   
 ##  Environment Details
   
-- Operating System (OS): Ubuntu 23.04
+- Operating System (OS): Ubuntu 20.04
 - CPU: 4
 - Storage: 8 GB
   
@@ -27,8 +27,8 @@ To set up an object storage system in a cluster using MinIO.
 
 ### 1. Install Docker on Linux:
  #### Update Package Lists:
-
- > `sudo apt update`
+ **Step 1**
+ >  **`sudo apt update`**
 
  `sudo:` This stands for "Superuser Do" and it's used to execute commands with elevated privileges. It allows you to make changes to your system that regular users wouldn't have permission to do.
 
@@ -36,68 +36,20 @@ To set up an object storage system in a cluster using MinIO.
 
  `update:` This is a specific command for apt. When you run sudo apt update, it doesn't actually update the packages on your system; instead, it updates the local database of available packages. This database is necessary for the package manager to know what packages are available, where to download them, and what versions exist.
   
+  **Step 2**
+ > **`sudo apt install apt-transport-https ca-certificates curl software-properties-common`**
 
-  #### Install Required Dependencies:
-  > `sudo apt install apt-transport-https ca-certificates curl software-properties-common`
+**Step 3**
+> **`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`**
 
-   
-`sudo:` This is a command that allows a permitted user to execute a command as the superuser or another user, as specified by the security policy.
+**Step 4**
+>**`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"`**
 
-`apt:` This is the package management tool on Debian-based systems. It's used for installing, updating, upgrading, and removing software packages.
+**Step 5**
+>**`apt-cache policy docker-ce`**
 
-`install:` This is the subcommand for apt that specifies the action to be taken, in this case, installing a package.
-
-`apt-transport-https:` This package allows APT to handle HTTPS URLs, which is crucial for secure communication when downloading packages from repositories.
-
-`ca-certificates:` This package contains the trusted Certificate Authorities (CAs) that are used to verify the authenticity of SSL certificates.
-
-`curl:` This is a command-line tool and library for transferring data with URLs. It's often used in scripts to download files from the internet.
-
-`software-properties-common:` This package provides an abstraction of the used apt repositories. It also includes common utilities for adding and managing software repositories.
-
-  #### Add Docker GPG Key:
- > `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`
-
-`curl -fsSL https://download.docker.com/linux/ubuntu/gpg:` This part fetches the Docker GPG (GNU Privacy Guard) key from the specified URL using the curl command. The options -fsSL tell curl to be quiet (-s), follow redirects (-L), and show errors (-f).
-
-`|:` This vertical bar is a pipe. It takes the output of the command on its left (in this case, the GPG key downloaded by curl) and passes it as input to the command on its right.
-
-`sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg:` This part takes the GPG key received from curl and does a couple of things. sudo is used to run the following command with administrative privileges.
-
-`gpg --dearmor:` This command is transforming the key from the GPG format into a format that is more convenient for storage and use. Think of it like converting a file from one format to another.
-
-`-o /usr/share/keyrings/docker-archive-keyring.gpg:` This specifies the output file where the transformed key will be stored. In this case, it's saved as /usr/share/keyrings/docker-archive-keyring.gpg.
-
-#### Set up the Stable Repository:
-
-> `echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
-
-`echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable":` This part uses the echo command to print a Docker repository configuration line. It adds the Docker repository for Ubuntu to the system's package manager (apt). The configuration includes information about the package architecture (amd64), the GPG key for package verification, the repository URL, and the Ubuntu codename (retrieved by $(lsb_release -cs)).
-
-`|:` This is a pipe, which takes the output from the echo command on the left and passes it as input to the next command on the right.
-
-`sudo tee /etc/apt/sources.list.d/docker.list:` This uses the tee command with sudo to write the output received from the pipe to the file /etc/apt/sources.list.d/docker.list. The tee command is used to write to files and also display the output. The file path indicates that this configuration will be stored in a separate file named docker.list within the sources.list.d directory.
-
-`> /dev/null:` This part redirects the standard output of the tee command (which would normally be displayed on the console) to /dev/null, effectively suppressing any output. It's a common practice to do this when you just want to write to a file and don't need to see the output on the console.
-
-#### Install Docker Engine:
-
-> `sudo apt install docker-ce docker-ce-cli containerd.io`
-
-`sudo:` This stands for "superuser do" and it is used to execute commands with elevated privileges. It's often required for installing or modifying system-level software.
-
-`apt:` This is the Advanced Package Tool, a package manager used in Debian-based systems. It's used for handling the installation and removal of software packages.
-
-`install:` This is the action you're telling APT to perform—specifically, to install the following packages.
-
-`docker-ce:` This is the Docker Community Edition. Docker is a platform that enables developers to automate the deployment of applications inside lightweight, portable containers.
-
-`docker-ce-cli:` This is the Docker command-line interface. It provides commands for working with Docker containers.
-
-`containerd.io:` This is an industry-standard core container runtime. It provides the basic functionality for container execution and supervision, handling the complete container lifecycle of its host system.
-
-#### Verify Docker Installation:
-> `sudo docker run hello-world`
+**Step 6**
+>**`sudo apt install docker-ce`**
 
 ### 2. Install Docker Compose:
 #### Download Docker Compose:
