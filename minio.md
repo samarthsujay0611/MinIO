@@ -38,10 +38,12 @@ To set up an object storage system in a cluster using MinIO.
   
   **Step 2**
  ``` 
-  **sudo apt install apt-transport-https ca-certificates curl software-properties-common**
+ sudo apt install apt-transport-https ca-certificates curl software-properties-common
 ```
 **Step 3**
-> **`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`**
+```
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
 
 **Step 4**
 >**`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"`**
