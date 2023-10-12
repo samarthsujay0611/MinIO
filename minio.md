@@ -7,9 +7,9 @@ To set up an object storage system in a cluster using MinIO.
   
 ##  Environment Details
   
-- Operating System (OS): Ubuntu 20.04
-- CPU: 4
-- Storage: 8 GB
+- **Operating System (OS):** Ubuntu 20.04
+- **CPU:** 4
+- **Storage:** 8 GB
   
 ##  List of Tools and Technologies
   
