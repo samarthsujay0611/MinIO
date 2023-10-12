@@ -37,8 +37,9 @@ To set up an object storage system in a cluster using MinIO.
  `update:` This is a specific command for apt. When you run sudo apt update, it doesn't actually update the packages on your system; instead, it updates the local database of available packages. This database is necessary for the package manager to know what packages are available, where to download them, and what versions exist.
   
   **Step 2**
- > **`sudo apt install apt-transport-https ca-certificates curl software-properties-common`**
-
+ ``` 
+  **sudo apt install apt-transport-https ca-certificates curl software-properties-common**
+```
 **Step 3**
 > **`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`**
 
