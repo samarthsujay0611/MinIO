@@ -28,7 +28,10 @@ To set up an object storage system in a cluster using MinIO.
 ### 1. Install Docker on Linux:
  #### Update Package Lists:
  **Step 1**
- >  **`sudo apt update`**
+ 
+ ```
+ sudo apt update
+```
 
  `sudo:` This stands for "Superuser Do" and it's used to execute commands with elevated privileges. It allows you to make changes to your system that regular users wouldn't have permission to do.
 
@@ -46,23 +49,35 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
 **Step 4**
->**`sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"`**
+```
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+```
 
 **Step 5**
->**`apt-cache policy docker-ce`**
+```
+apt-cache policy docker-ce
+```
 
 **Step 6**
->**`sudo apt install docker-ce`**
+```
+sudo apt install docker-ce
+```
 
 ### 2. Install Docker Compose:
 #### Download Docker Compose:
-> `sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+```
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
 
 #### Make Docker Compose Executable:
-> `sudo chmod +x /usr/local/bin/docker-compose`
+```
+sudo chmod +x /usr/local/bin/docker-compose
+```
 
 #### Verify Docker Compose Installation:
-> `docker-compose --version`
+```
+docker-compose --version
+```
 
   
 ###  3. Edit the `docker-compose.yml` File
@@ -71,7 +86,9 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
    Use the `vim` command to open and edit the `docker-compose.yml` file, which is commonly used for defining multi-container Docker applications.
   
   
-   > **vim docker-compose.yml**
+```
+vim docker-compose.yml
+```
   
 Here's a breakdown of what this command does:
   
@@ -131,7 +148,9 @@ services:
 ###  5. Start Docker Containers in Detached Mode
   
   
-> **`docker-compose up -d`**
+```
+docker-compose up -d
+```
   
 The command docker-compose up -d is used to start Docker containers defined in a Docker Compose file in detached mode. Let me break down the command for you:
 - **`docker-compose`**: This is the command-line tool for Docker Compose, which is a tool for defining and running multi-container Docker applications.
@@ -153,7 +172,9 @@ Here's a basic example of how you might use this command:
 ###  6. Edit the /etc/hosts File
   
   
-> **vim /etc/hosts**
+```
+vim /etc/hosts
+```
   
 The command vim /etc/hosts is used to open the /etc/hosts file in the Vim text editor. This file is typically found on Unix-like operating systems, including Linux. The /etc/hosts file is used to map hostnames to IP addresses and is often used for local DNS resolution.
   
@@ -179,15 +200,23 @@ The following commands add a temporary extension to your system PATH for running
   
 Alternatively, execute mc by navigating to the parent folder and running ./mc --help
   
-> `curl https://dl.min.io/client/mc/release/linux-amd64/mc \
+```
+curl https://dl.min.io/client/mc/release/linux-amd64/mc \
   --create-dirs \
-  -o $HOME/minio-binaries/mc`
+  -o $HOME/minio-binaries/mc
+```
 
-> `chmod +x $HOME/minio-binaries/mc`
+```
+chmod +x $HOME/minio-binaries/mc
+```
   
-> `export PATH=$PATH:$HOME/minio-binaries/`
+```
+export PATH=$PATH:$HOME/minio-binaries/
+```
   
-> `mc --help`
+```
+  mc --help
+```
   
 **Output:**
   
@@ -196,7 +225,9 @@ Alternatively, execute mc by navigating to the parent folder and running ./mc --
 ###  8. Configure a MinIO Alias
   
   
-> `mc alias set myminio http://127.0.0.1:8080 admin redhat1234`
+```
+mc alias set myminio http://127.0.0.1:8080 admin redhat1234
+```
   
 The command you've provided appears to be related to configuring an alias for MinIO, a popular object storage server. This alias is being set using the mc command-line tool. Let me break down the command for you:
   
@@ -213,7 +244,9 @@ The command you've provided appears to be related to configuring an alias for Mi
   
 7. Get Information About the MinIO Server
   
->**mc admin info myminio**
+```
+mc admin info myminio
+```
   
   
 The command `mc admin info myminio` is used with the `mc` (MinIO Client) tool to retrieve information about a MinIO server instance named "myminio." MinIO is an open-source, high-performance object storage system that can be used for storing and managing large amounts of data.
@@ -237,7 +270,9 @@ Please make sure that you have the MinIO Client (`mc`) properly configured with 
 ###  9. Execute a Command Inside a Docker Container
   
   
-> **`docker exec -it root_lb_1 "/sidekick" -a :8989 --health-path=/minio/health/ready http://minio{1...4}:9000`**
+  ```
+  docker exec -it root_lb_1 "/sidekick" -a :8989 --health-path=/minio/health/ready http://minio{1...4}:9000
+```
   
 The command you provided appears to be a Docker command using the docker exec command to run a command inside a Docker container. Let's break down the command:
   
@@ -260,8 +295,9 @@ In summary, this Docker command runs the "/sidekick" command inside the "root_lb
   
 ###  10. View Docker Container Logs in Real-Time
   
-  
-> **docker logs -f samarth_minio2_1**
+```  
+docker logs -f samarth_minio2_1
+```
   
 The `docker logs -f` command is used to view the logs of a Docker container in real-time. Here's a breakdown of the command you provided:
   
@@ -308,7 +344,9 @@ Use the `mc mb` command to create a new MinIO bucket.
   
 Example:
   
-> **`mc mb myminio/sam1`**
+```
+mc mb myminio/sam1
+```
   
 The command `mc mb myminio/sam1` is used with the MinIO Client (mc) tool to create a new bucket named "sam1" in the MinIO server configured with the alias "myminio."
   
@@ -328,8 +366,9 @@ When you run this command, it will create a new bucket named "sam1" in the MinIO
   
 ###  15.The object to copy from bucket
   
-  
-> **`mc cp /home/samarth/screenshots/sr.png -/myminio/sam1`**
+  ```
+  mc cp /home/samarth/screenshots/sr.png -/myminio/sam1
+```
   
 The command you've provided appears to be using mc, which stands for MinIO Client. MinIO is an open-source, object storage server, and mc is a command-line tool for interacting with MinIO servers.
   
@@ -346,7 +385,9 @@ Here's a breakdown of the command:
 ###  16.All Images are shown in the below screenshot 
   
   
-> **mc ls myminio/sam1**
+```
+mc ls myminio/sam1
+```
   
 The command mc ls myminio/sam1 is used with the MinIO Client (mc) to list the objects or files within the sam1 bucket or directory on the MinIO server named myminio.
   
