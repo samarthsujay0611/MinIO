@@ -275,7 +275,7 @@ Please make sure that you have the MinIO Client (`mc`) properly configured with 
   docker exec -it root_lb_1 "/sidekick" -a :8989 --health-path=/minio/health/ready http://minio{1...4}:9000
 ```
   
-The command you provided appears to be a Docker command using the docker exec command to run a command inside a Docker container. Let's break down the command:
+The above command is a Docker command that uses the 'docker exec' command to run a command inside a Docker container. Let's break down the command:
   
 1. **`docker exec`**: This is the Docker command used to execute a command inside a running Docker container.
 2. **`-it`**: These are options for the docker exec command:
