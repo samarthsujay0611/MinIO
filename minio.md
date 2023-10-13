@@ -41,7 +41,7 @@ To set up an object storage system in a cluster using MinIO.
   
   **Step 2**
  
- sudo apt install apt-transport-https ca-certificates curl software-properties-common
+ > sudo apt install apt-transport-https ca-certificates curl software-properties-common
 
 **Step 3**
 ```
