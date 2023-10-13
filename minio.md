@@ -153,14 +153,14 @@ services:
 docker-compose up -d
 ```
   
-The command docker-compose up -d is used to start Docker containers defined in a Docker Compose file in detached mode. Let me break down the command for you:
+The command **docker-compose up -d** is used to start Docker containers defined in a Docker Compose file in detached mode. Let's discuss the commands in detail:
 - **`docker-compose`**: This is the command-line tool for Docker Compose, which is a tool for defining and running multi-container Docker applications.
 - **`up`**: This subcommand is used to start the containers defined in the Docker Compose file.
-- **`-d` or `--detach`**: This flag tells Docker Compose to run the containers in the background, detached from the terminal. This means that you can continue to use the terminal for other tasks without the container logs and output being displayed in your terminal window. The -d flag is optional, but it's commonly used for long-running services.
+- **`-d` or `--detach`**: This flag tells Docker Compose to run the containers in the background, detached from the terminal. This means that we can continue to use the terminal for other tasks without the container logs and output being displayed in our terminal window. The -d flag is optional, but it's commonly used for long-running services.
   
-When you run docker-compose up -d, Docker Compose will read the docker-compose.yml file in the current directory (or you can specify a different Compose file with the -f flag), create and start the containers defined in the Compose file, and detach them from the terminal. This is useful for running services or applications that should continue to run in the background.
+When we run docker-compose up -d, Docker Compose will read the docker-compose.yml file in the current directory (or you can specify a different Compose file with the -f flag), create and start the containers defined in the Compose file, and detach them from the terminal. This is useful for running services or applications that should continue to run in the background.
   
-Here's a basic example of how you might use this command:
+Here's a basic example of how anyone might use this command:
   
 1. Navigate to the directory containing your docker-compose.yml file.
   
