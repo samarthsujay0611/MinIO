@@ -490,7 +490,8 @@ Here's a breakdown of the command:
 **`mc`**: The MinIO Client command-line tool.
 
 **`ls`**: The subcommand to list objects or files.
-myminio/sam1: The path to the bucket or directory on the MinIO server where you want to list objects.
+
+**`myminio/sam1:`** The path to the bucket or directory on the MinIO server where you want to list objects.
   
   
 **Output:**
