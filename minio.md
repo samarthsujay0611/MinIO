@@ -180,37 +180,37 @@ Once you run this command, Vim will open the `docker-compose.yml` file, allowing
 version: '3'
 services:
   lb:
-	image: minio/sidekick:v0.5.1
-	ports:
-  	- 8080:8080
-	command:
-  	- --health-path=/minio/health/ready
-  	- http://minio{1...4}:9000
+    image: minio/sidekick:v0.5.1
+    ports:
+      - 8080:8080
+    command:
+      - --health-path=/minio/health/ready
+      - http://minio{1...4}:9000
   minio1:
-	image: minio/minio:RELEASE.2023-08-16T20-17-30Z
-	environment:
-  	MINIO_ACCESS_KEY: admin
-  	MINIO_SECRET_KEY: redhat1234
-	command: server http://minio{1...4}/data
+    image: minio/minio:RELEASE.2023-08-16T20-17-30Z
+    environment:
+      MINIO_ACCESS_KEY: admin
+      MINIO_SECRET_KEY: redhat1234
+    command: server http://minio{1...4}/data
   minio2:
-	image: minio/minio:RELEASE.2023-08-16T20-17-30Z
-	environment:
-  	MINIO_ACCESS_KEY: admin
-  	MINIO_SECRET_KEY: redhat1234
-	command: server http://minio{1...4}/data
+    image: minio/minio:RELEASE.2023-08-16T20-17-30Z
+    environment:
+      MINIO_ACCESS_KEY: admin
+      MINIO_SECRET_KEY: redhat1234
+    command: server http://minio{1...4}/data
   minio3:
-	image: minio/minio:RELEASE.2023-08-16T20-17-30Z
-	environment:
-  	MINIO_ACCESS_KEY: admin
-  	MINIO_SECRET_KEY: redhat1234
-	command: server http://minio{1...4}/data
+    image: minio/minio:RELEASE.2023-08-16T20-17-30Z
+    environment:
+      MINIO_ACCESS_KEY: admin
+      MINIO_SECRET_KEY: redhat1234
+    command: server http://minio{1...4}/data
   minio4:
-	image: minio/minio:RELEASE.2023-08-16T20-17-30Z
-	environment:
-  	MINIO_ACCESS_KEY: admin
-  	MINIO_SECRET_KEY: redhat1234
-	command: server http://minio{1...4}/data
-  
+    image: minio/minio:RELEASE.2023-08-16T20-17-30Z
+    environment:
+      MINIO_ACCESS_KEY: admin
+      MINIO_SECRET_KEY: redhat1234
+    command: server http://minio{1...4}/data
+
 ```
 ![Alt text](2.png )
   
