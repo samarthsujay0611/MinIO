@@ -218,7 +218,7 @@ services:
   
   
 ```
-docker-compose up -d
+sudo docker-compose up -d
 ```
   
 The command **docker-compose up -d** is used to start Docker containers defined in a Docker Compose file in detached mode. Let's discuss the commands in detail:
