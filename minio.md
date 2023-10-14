@@ -254,7 +254,14 @@ Here's a breakdown of the command:
 **`/etc/hosts`**: This is the file path. It specifies the location of the file you want to open. In this case, you are opening the /etc/hosts file, which is commonly used to define static IP address-to-hostname mappings and hostname resolutions.
   
 When you run this command, Vim will open the /etc/hosts file, allowing you to view and edit its contents. Vim is a powerful and customizable text editor, so you can use it to make changes to the file and save those changes if needed.
-  
+
+**Input**
+```
+ 127.0.0.1 minio1
+ 127.0.0.1 minio2
+ 127.0.0.1 minio3
+ 127.0.0.1 minio4
+```  
 **Output:**
   
 ![Alt text](4.png )
