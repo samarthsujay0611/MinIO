@@ -464,7 +464,7 @@ When you run this command, it will create a new bucket named "sam1" in the MinIO
 ###  15.The object to copy from bucket
   
   ```
-  mc cp /home/samarth/screenshots/sr.png -/myminio/sam1
+  ./mc cp /home/samarth/screenshots/sr.png -/myminio/sam1
 ```
   
 The above command is using mc, which stands for MinIO Client. MinIO is an open-source, object storage server, and mc is a command-line tool for interacting with MinIO servers.
