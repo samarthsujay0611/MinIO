@@ -356,7 +356,7 @@ Please make sure that you have the MinIO Client (`mc`) properly configured with 
   
   
   ```
-  docker exec -it root_lb_1 "/sidekick" -a :8989 --health-path=/minio/health/ready http://minio{1...4}:9000
+sudo docker exec -it root_lb_1 "/sidekick" -a :8989 --health-path=/minio/health/ready http://minio{1...4}:9000
 ```
   
 The above command is a Docker command that uses the 'docker exec' command to run a command inside a Docker container. Let's break down the command:
@@ -388,7 +388,7 @@ In summary, this Docker command runs the "/sidekick" command inside the "root_lb
 ###  10. View Docker Container Logs in Real-Time
   
 ```  
-docker logs -f samarth_minio2_1
+sudo docker logs -f samarth_minio2_1
 ```
   
 The `docker logs -f` command is used to view the logs of a Docker container in real-time. Here's a breakdown of the command you provided:
