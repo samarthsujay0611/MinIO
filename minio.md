@@ -321,7 +321,7 @@ The command you've provided appears to be related to configuring an alias for Mi
 **`redhat1234`**: This is the corresponding secret key or password used to authenticate with the MinIO server. Make sure to keep this key secure.
   
 **Output:** 
-  
+
 ![Alt text](6.png )
   
 7. Get Information About the MinIO Server
